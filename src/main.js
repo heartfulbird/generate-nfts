@@ -11,6 +11,7 @@ const {
   description,
   external_link_name,
   collectionName,
+  price,
   background,
   uniqueDnaTorrance,
   layerConfigurations,
@@ -142,13 +143,13 @@ const addMetadata = (_dna, _edition) => {
     explicit_and_sensitive_content: false,
     supply: 1,
     blockchain: "Polygon",
-    price: 0.005,
+    price: price,
     quantity: 1,
     dna: sha1(_dna),
     edition: _edition,
     date: dateTime,
     ...extraMetadata,
-    
+
     compiler: "HashLips Art Engine",
   };
   if (network == NETWORK.sol) {

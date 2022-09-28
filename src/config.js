@@ -4,12 +4,23 @@ const { NETWORK } = require(`${basePath}/constants/network.js`);
 
 const network = NETWORK.eth;
 
+// TODO: price
+const price = 0.00555; // REQUIRED
+
 // General metadata for Ethereum
-const namePrefix = "NFT";
-const description = "Remember to replace this description";
-const baseUri = "ipfs://NewUriToReplace";
-const external_link_name = "https://www.google.com/";
-const collectionName = "CollectionName";
+const collectionName = "Morning Flowers"; // REQUIRED
+const description = "A collection of morning flowers collected in a fragrant secret garden. Bring home the one that matches your mood."; // REQUIRED
+
+// Item name pattern: "namePrefix #{number}"
+const namePrefix = "Morning Flower"; // REQUIRED
+
+// TODO: ABSOLUTE path
+//       => will be used in Uploader project (COPY _metadata.json from ./build/json to uploader/data/)
+const baseUri = "/Users/stan/projects/generate-nfts/build/images"; // REQUIRED
+// const baseUri = "ipfs://NewUriToReplace";
+
+// Personal Custom Page / Social / Anything
+const external_link_name = null;
 
 const solanaMetadata = {
   symbol: "YC",
@@ -23,18 +34,20 @@ const solanaMetadata = {
   ],
 };
 
-// If you have selected Solana then the collection starts from 0 automatically
+// NOTE: If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 100,
-    layersOrder: [
-      { name: "Background" },
-      { name: "Eyeball" },
-      { name: "Eye color" },
-      { name: "Iris" },
-      { name: "Shine" },
-      { name: "Bottom lid" },
-      { name: "Top lid" },
+    // MAX combinations:
+    //  M^N
+    // where:
+    //  M => traits (versions)
+    //  N => layers(categories)
+    growEditionSizeTo: 4, // REQUIRED
+    layersOrder: [ // REQUIRED
+      { name: "background" },
+      { name: "vase" },
+      { name: "basic flowers" },
+      { name: "anemone" },
     ],
   },
 ];
@@ -44,8 +57,8 @@ const shuffleLayerConfigurations = false;
 const debugLogs = false;
 
 const format = {
-  width: 512,
-  height: 512,
+  width: 512,   // REQUIRED
+  height: 512, // REQUIRED
   smoothing: false,
 };
 
@@ -123,4 +136,5 @@ module.exports = {
   solanaMetadata,
   gif,
   preview_gif,
+  price,
 };
